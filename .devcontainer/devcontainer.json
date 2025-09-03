@@ -1,13 +1,14 @@
 {
-  "name": "DotNet Interview",
-  "image": "mcr.microsoft.com/dotnet/sdk:6.0",
-  "settings": {
-    "terminal.integrated.shell.linux": "/bin/bash"
-  },
-  "postCreateCommand": "dotnet restore",
+  "name": "Codespace with SQL Server",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "dev",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "forwardPorts": [1433],
+  "postCreateCommand": "bash .devcontainer/setup-sqlcmd.sh",
   "customizations": {
     "vscode": {
       "extensions": [
+        "ms-mssql.mssql",      // SQL Server extension (GUI query experience)
         "ms-dotnettools.csharp"
       ]
     }
