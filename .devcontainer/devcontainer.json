@@ -1,7 +1,7 @@
 {
   "name": "Codespace with SQL Server",
   "dockerComposeFile": "docker-compose.yml",
-  "service": "mssql",
+  "service": "dev",
   "workspaceFolder": "/workspaces",
    "forwardPorts": [1433],
   //"postCreateCommand": "bash .devcontainer/setup-sqlcmd.sh",
