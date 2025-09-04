@@ -15,3 +15,7 @@ sudo apt-get install -y mssql-tools18 unixodbc-dev
 # Make sqlcmd available in PATH for bash sessions
 echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bashrc
 echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.zshrc || true
+
+# install dotnet legacy 
+sudo apt-get update 
+sudo apt-get install dotnet-host-8.0

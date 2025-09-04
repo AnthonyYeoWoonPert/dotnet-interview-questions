@@ -22,5 +22,6 @@ Trusted: Check
 2. For the theoretical exercise, write your answers directly in **_01_tsql_question.md_** and commit.
 
 3. For the coding exercise, write your code in the following file: 
+    - [x] 01_tsql_question.sql 
     - [x] 02_tsql_question.sql 
     - [x] 03_tsql_question.sql 

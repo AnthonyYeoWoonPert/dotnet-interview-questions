@@ -12,14 +12,16 @@ services:
   db:
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
-      - ACCEPT_EULA: "Y"
-      - MSSQL_PID: "Developer"
-      - MSSQL_SA_PASSWORD: "P@ssw0rdStrong!"
+      MSSQL_PID: "Developer"
+      MSSQL_SA_PASSWORD: "P@ssw0rdStrong!"
+      ACCEPT_EULA: "Y"
       
     ports:
       - "1433:1433"
     volumes:
       - mssqldata:/var/opt/mssql
+    command: 
+      "/opt/mssql/bin/sqlservr"
 
 volumes:
   mssqldata:

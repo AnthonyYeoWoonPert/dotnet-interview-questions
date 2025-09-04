@@ -1,16 +1,19 @@
 /* ########################################################
-Coding Exercise 1
+Coding Exercise 2
 
-You are given two tables: 
-Employees (Id, Name, DepartmentId, Salary)
-Departments (Id, Name)
+Write a TSQL stored procedure named UpdateEmployeeSalary that 
+- takes Name (string), DepartmentID and NewSalary (decimal) as input. 
 
-Write a T-SQL query that returns 
-1. the name of each department 
-2. the average salary of employees in that department 
+The procedure should update the Salary for the specified employee. 
+Include error handling (e.g., if the employee does not exist) and 
 
-Extra Requirements
-1. Include department with no employee, showing the average salary to 0
+Additional Requirement: 
+- use a transaction to ensure data integrity. 
+
 #######################################################*/
+Use TestDB;
+SELECT * FROM Employees;
+-- SELECT * FROM Departments;
+GO
 
--- 
+--- place your script after this comments
