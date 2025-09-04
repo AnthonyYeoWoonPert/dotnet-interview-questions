@@ -14,9 +14,7 @@ services:
     environment:
       ACCEPT_EULA: "Y"
       MSSQL_PID: "Developer"
-      # Use a strong password that meets SQL Server rules:
-      # at least 8 chars, upper, lower, number, symbol
-      MSSQL_SA_PASSWORD: ${SA_PASSWORD:-P@ssw0rdStrong!}
+      MSSQL_SA_PASSWORD: "P@ssw0rdStrong!"
     ports:
       - "1433:1433"
     volumes:
