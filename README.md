@@ -21,9 +21,9 @@ The test includes the combination of theoretical questions, practical coding exe
 
 6. Check if the following directories exists 
     
-    - [ ] Interview-Test/01-dotnet-task
-    - [ ] Interview-Test/02-tsql-task
-    - [ ] Interview-Test/03-troubleshooting-task
+    - [X] Interview-Test/01-dotnet-task
+    - [X] Interview-Test/02-tsql-task
+    - [X] Interview-Test/03-troubleshooting-task
 
 7. Answer as much questions as you can.
 
