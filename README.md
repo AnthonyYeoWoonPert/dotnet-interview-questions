@@ -58,39 +58,36 @@ The codespace environment is pre-configured with
 
 
 ## Test Structure 
-├.devcontainer/
-├── devcontainer.json # Dev container configuration for consistent environment
-├── docker-compose.yml # Docker Compose setup for services (e.g., SQL Server)
-├── Dockerfile # Docker build instructions
-├── setup-sqlcmd.sh # Script to install and configure sqlcmd inside container
+├─ .devcontainer/
+│ ├── devcontainer.json # Dev container configuration for consistent environment
+│ ├── docker-compose.yml # Docker Compose setup for services (e.g., SQL Server)
+│ ├── Dockerfile # Docker build instructions
+│ ├── setup-sqlcmd.sh # Script to install and configure sqlcmd inside container
 │
-├─archive/ # Archived/old files (not used in active tasks)
+├─ archive/ # Archived/old files (not used in active tasks)
 │
-├─Interview-Test/
+├─ Interview-Test/
+│ ├── 01-dotnet-task/
+│ │ ├── 01_instruction.md # Instructions for .NET coding task
+│ │ ├── 01_dotnet_code_answer/ # Folder for Question 1
+│ │ │ └── ProgramAPI.csproj # Example files
+│ │ ├── 02_dotnet_code_answer/ # Folder for Question 2
+│ │ └── 03_dotnet_code_answer/ # Folder for Question 3
 │
-├── 01-dotnet-task/
-│ └── 01_instruction.md # Instructions for .NET coding task
-│ └── 01_dotnet_code_answer # folder for Question 1
-│ └──── ProgramAPI.csproj # example files
-│ └── 02_dotnet_code_answer # folder for Question 2
-│ └── 03_dotnet_code_answer # folder for Question 3
+│ ├── 02-tsql-task/
+│ │ ├── 00_tsql_instruction.md # Instructions for SQL coding task
+│ │ ├── 01_tsql_question.md # Question 1 description (Markdown)
+│ │ ├── 01_tsql_question.sql # SQL script for Question 1
+│ │ ├── 02_tsql_question.sql # SQL script for Question 2
+│ │ ├── 03_tsql_question.sql # SQL script for Question 3
+│ │ └── create_database_table.sql # SQL script to create required database tables
 │
-├── 02-tsql-task/
-│ ├── 00_tsql_instruction.md # Instructions for SQL coding task
-│ ├── 01_tsql_question.md # Question 1 description (Markdown)
-│ ├── 01_tsql_question.sql # SQL script for Question 1
-│ ├── 02_tsql_question.sql # SQL script for Question 2
-│ ├── 03_tsql_question.sql # SQL script for Question 3
-│ └── create_database_table.sql # SQL script to create required database tables
+│ ├── 03-troubleshooting-task/
+│ │ └── troubleshooting_question.md # Questions for troubleshooting task
 │
-├── 03-troubleshooting-task/
-├── troubleshooting_question.md # Questions for troubleshooting task
-│
-├─.gitignore # Git ignore file
-│
-├─LICENSE # License for repository
-│
-├─README.md # Project documentation
+├─ .gitignore # Git ignore file
+├─ LICENSE # License for repository
+└─ README.md # Project documentation
 
 ## Submission
 
