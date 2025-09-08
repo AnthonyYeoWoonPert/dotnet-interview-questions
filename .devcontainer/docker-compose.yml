@@ -20,6 +20,7 @@ services:
       - "1433:1433"
     volumes:
       - mssqldata:/var/opt/mssql
+      - ./.devcontainer:/workspace/.devcontainer:ro
     command: 
       "/opt/mssql/bin/sqlservr"
 
