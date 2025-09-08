@@ -13,8 +13,9 @@ This section assesses your understanding of the challenges and best practices in
 
 5. How would you handle third-party dependencies that are not compatible with .NET during a migration? Describe a step-by-step process for identifying and resolving such dependencies.
 
----------------------------
-### .NET
+---
+
+### .NET Exercises
 
 6. Explain the concept of async and await in C#. Provide a simple code
 example demonstrating their use and explain the benefits of asynchronous
@@ -26,7 +27,7 @@ programming in a typical web application context.
 
 9. Discuss the differences between IEnumerable<T>, ICollection<T>, IList<T>, and List<T> in C#. When would you choose one over the others.
 
-
+---
 
 ## Coding Exercises
 
@@ -50,7 +51,7 @@ programming in a typical web application context.
     - the salary threshold should be a parameter from the web app.
     - Ensure the SQL database connection is ready.
     - Use the tables provided in coding questions _Interview-Test/02-tsql-task/create_database_table.sql_
-    
+
 
 ## Submission 
 

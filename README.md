@@ -13,11 +13,15 @@ The test includes the combination of theoretical questions, practical coding exe
 3. Click on the green **Code** button. 
 4. Select the **Codespace** tab. 
 
+> Note:
 > GitHub Free for personal accounts has 15GB/month storage and 120hrs compute time per month. No charges.
+> If you don’t want to use Codespaces, you can run the Docker Compose setup from .devcontainer/docker-compose.yml on your local machine.
+
 
 5. Click **Create codespace on main**.
 
-> GitHub Codespace will provision a new environment based on the <mark>_.devcontainer_</mark> configuration in this repository. This may take a few minutes for the initial step, as it is including installing .NET SDK and SQL Server tools.
+> Note:
+> GitHub Codespace will provision a new environment based on the <mark>_.devcontainer_</mark> configuration in this repository. This may take a few minutes for the initial step, as it is including installing .NET SDK, MSSQL, and SQL Server tools.
 
 6. Check if the following directories exists 
     
@@ -32,13 +36,13 @@ The test includes the combination of theoretical questions, practical coding exe
     - [X] Interview-Test/03-troubleshooting-task
         - [x] troubleshooting_instruction.md
 
-> Hint: Take some times to read all the instructions before your start
+> Hint: 
+> Take some times to read all the instructions before your start
 
 7. Please answer all the questions to the best of your ability. 
 8. For coding exercises, please provide the complete code solution if possible. 
     a) Download all the execution results (if applicable) for reference.
 9. For theoretical exercises and scenario-based exercises, please provide a clear and concise explanations.
-
 
 Happy Coding!
 
@@ -66,6 +70,10 @@ The codespace environment is pre-configured with
 │
 ├── 01-dotnet-task/
 │ └── 01_instruction.md # Instructions for .NET coding task
+│ └── 01_dotnet_code_answer # folder for Question 1
+│ └──── ProgramAPI.csproj # example files
+│ └── 02_dotnet_code_answer # folder for Question 2
+│ └── 03_dotnet_code_answer # folder for Question 3
 │
 ├── 02-tsql-task/
 │ ├── 00_tsql_instruction.md # Instructions for SQL coding task
@@ -87,3 +95,6 @@ The codespace environment is pre-configured with
 ## Submission
 
 Once you have completed both parts of the test, pleaase commit your changes to your forked repository and notify us.
+
+
+*Author: Breakfast Byte Sdn. Bhd.*

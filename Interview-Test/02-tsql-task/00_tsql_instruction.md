@@ -1,9 +1,7 @@
 # Section 2: T-SQL and MS SQL
 This section assesses your knowledge of Transact-SQL (T-SQL) and Microsoft SQL Server (MSSQL) concepts, including stored procedures, functions and integration with .NET/.NET Framework. 
 
-## Running T-SQL tasks in GitHub Codespaces
-
-### Setting up SQL Server for T-SQL and MSSQL coding exercise
+## Setting up SQL Server for T-SQL and MSSQL coding exercise
 
 An MSSQL instance should be automatically started via docker-compose in the .devcontainer when the Codespace is created.
 
@@ -19,8 +17,15 @@ Password: P@ssw0rdStrong!
 Trusted: Check
 ```
 
-1. to set up the TestDB and Tables, connect to the SQL Server Instance and execute the following scripts
+2. to set up the TestDB and Tables, connect to the SQL Server Instance and execute the following scripts
     - [x] create_database_table.sql
+
+3. Once the connection to the MSSQL established, right click on the .sql file extension and click on execute query.
+
+> Note: 
+> 
+> You might need to install the .NET and MS-SQL extensions if using local docker environment in your visual studio code
+
 ## Questions
 
 1. For the theoretical questions, refer to the following file, write your answers inside, and commit:
