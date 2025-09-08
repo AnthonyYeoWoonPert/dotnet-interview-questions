@@ -6,7 +6,7 @@ services:
     depends_on:
       - mssql
     volumes:
-      - .:/workspace
+      - ..:/workspaces:cached:ro
     working_dir: /workspace
     stdin_open: true
     tty: true
