@@ -1,3 +1,11 @@
 Interview-Test/01-dotnet-task/obj
 .vscode
 archive
+appsettings.Development.json
+Shared/
+Properties/
+obj/
+ErrorViewModel.cs
+Interview-Test/01-dotnet-task/04_dotnet_code_answer/StockManagement/Views/_ViewStart.cshtml
+.gitignore
+Interview-Test/01-dotnet-task/04_dotnet_code_answer/StockManagement/Views/Home/Index.cshtml
