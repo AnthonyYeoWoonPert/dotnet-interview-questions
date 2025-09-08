@@ -10,7 +10,7 @@ You can connect to the mssql in the command palette
 1. Press _F1_ and type MS SQL:Add Connection
 
 ``` 
-Host: localhost
+Host: mssql
 Port: 1433
 User: SA
 Password: P@ssw0rdStrong!
