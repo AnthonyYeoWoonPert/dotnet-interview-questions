@@ -15,7 +15,7 @@ services:
     tty: true
     environment:
       # Example connection string for your app
-      ConnectionStrings__DefaultConnection: "Server=mssql,1433;Database=AppDb;User Id=sa;Password=P@ssw0rdStrong!;TrustServerCertificate=True;"
+      ConnectionStrings__DefaultConnection: "Server=mssql,1433;Database=master;User Id=SA;Password=P@ssw0rdStrong!;TrustServerCertificate=True;"
     ports:
       - "5000:5000"
       - "5001:5001"
@@ -32,7 +32,7 @@ services:
     volumes:
       - mssql_data:/var/opt/mssql
     healthcheck:
-      test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'P@ssw0rdStrong!' -Q 'SELECT 1' || exit 1"]
+      test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'P@ssw0rdStrong!' -Q 'SELECT 1' || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 30
