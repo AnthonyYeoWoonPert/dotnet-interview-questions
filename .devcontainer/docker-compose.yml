@@ -1,7 +1,7 @@
 version: "3.9"
 
 services:
-  dotnet-app:
+  dev:
     image: mcr.microsoft.com/dotnet/sdk:8.0
     depends_on:
       - mssql
