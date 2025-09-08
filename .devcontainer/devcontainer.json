@@ -2,18 +2,16 @@
   "name": "Codespace with SQL Server",
   "dockerComposeFile": "docker-compose.yml",
   "service": "dev",
-  "workspaceFolder": "/workspaces",
-   "forwardPorts": [1433],
-  //"postCreateCommand": "bash .devcontainer/setup-sqlcmd.sh || true",
-  "postCreateCommand": "dotnet --info && sqlcmd -? || true",
+  "workspaceFolder": "/workspace",
+  "forwardPorts": [1433],
+  "shutdownAction": "stopCompose",
+  "postCreateCommand": "dotnet --info && sqlcmd -S localhost -U sa -P 'P@ssw0rdStrong!' -Q \"SELECT @@VERSION\" || true",
   "customizations": {
     "vscode": {
-      "settings": {
-          "terminal.integrated.shell.linux": "/bin/bash"
-        },
       "extensions": [
+        "ms-dotnettools.csharp",
         "ms-mssql.mssql",
-        "ms-dotnettools.csharp"
+        "ms-azuretools.vscode-docker"
       ]
     }
   }
