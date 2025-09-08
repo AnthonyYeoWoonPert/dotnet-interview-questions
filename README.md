@@ -25,16 +25,11 @@ The test includes the combination of theoretical questions, practical coding exe
 
 6. Check if the following directories exists 
     
+    - [X] .devcontainer/
+    - [X] Interview-Test/
     - [X] Interview-Test/01-dotnet-task
-        - [x] 01_instruction.md
     - [X] Interview-Test/02-tsql-task
-        - [x] 00_tsql_instruction.md
-        - [x] 01_tsql_question.sql
-        - [x] 02_tsql_question.sql
-        - [x] 03_tsql_question.sql
-        - [x] create_database_table.sql
     - [X] Interview-Test/03-troubleshooting-task
-        - [x] troubleshooting_instruction.md
 
 > Hint: 
 > Take some times to read all the instructions before your start
@@ -73,7 +68,8 @@ The codespace environment is pre-configured with
 │ │ ├── 01_dotnet_code_answer/ # Folder for Question 1
 │ │ │ └── ProgramAPI.csproj # Example files
 │ │ ├── 02_dotnet_code_answer/ # Folder for Question 2
-│ │ └── 03_dotnet_code_answer/ # Folder for Question 3
+│ │ ├── 03_dotnet_code_answer/ # Folder for Question 3
+│ │ └── 04_dotnet_code_answer/StockManagement # Folder for Question 4
 │
 │ ├── 02-tsql-task/
 │ │ ├── 00_tsql_instruction.md # Instructions for SQL coding task

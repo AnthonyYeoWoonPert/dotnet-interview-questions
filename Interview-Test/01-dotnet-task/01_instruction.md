@@ -52,6 +52,12 @@ programming in a typical web application context.
     - Ensure the SQL database connection is ready.
     - Use the tables provided in coding questions _Interview-Test/02-tsql-task/create_database_table.sql_
 
+4. You are given a basic ASP.NET MVC Web Application for managing stock. The system should allow:
+    - Listing all products
+    - Adding a new product
+    - Updating stock
+However, the code has errors (compile-time + runtime). Find out and fix them.
+
 
 ## Submission 
 
