@@ -16,6 +16,11 @@ User: SA
 Password: P@ssw0rdStrong!
 Trusted: Check
 ```
+```
+In the advanced option, add the port number 
+```
+![alt text](image.png)
+
 
 2. to set up the TestDB and Tables, connect to the SQL Server Instance and execute the following scripts
     - [x] create_database_table.sql
