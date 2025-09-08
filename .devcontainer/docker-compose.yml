@@ -2,10 +2,7 @@ version: "3.9"
 
 services:
   dotnet-app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: dotnet-app
+    image: mcr.microsoft.com/dotnet/sdk:8.0
     depends_on:
       - mssql
     volumes:
@@ -14,11 +11,12 @@ services:
     stdin_open: true
     tty: true
     environment:
-      # Example connection string for your app
       ConnectionStrings__DefaultConnection: "Server=mssql,1433;Database=master;User Id=SA;Password=P@ssw0rdStrong!;TrustServerCertificate=True;"
     ports:
       - "5000:5000"
       - "5001:5001"
+    # command: bash -c "apt -y update && apt install -y curl apt-transport-https ca-certificates unixodbc-dev"
+    # command: bash -c "apt-get update && DEBIAN_FRONTEND=noninteractive && apt-get install -y curl gnupg apt-transport-https ca-certificates unixodbc-dev && rm -rf /var/lib/apt/lists/*"
 
   mssql:
     image: mcr.microsoft.com/mssql/server:2022-latest
