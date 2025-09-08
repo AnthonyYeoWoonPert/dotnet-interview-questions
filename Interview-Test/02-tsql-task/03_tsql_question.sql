@@ -1,4 +1,7 @@
-/* ########################################################
+/* ####################################################################
+Reminder: 
+Please connect to MSSQL Database and execute create_database_table.sql
+
 Coding Exercise 3
 
 You are given two tables: 
@@ -9,7 +12,7 @@ Write a T-SQL query to calculate the monthly sales summary, showing the total sa
 - VIP customers receive a flat 10% discount if their purchase is RM 100 or above
 - Non-VIP customers receive no discount 
 
-#######################################################*/
+#######################################################################*/
 
 
 USE TestDB;

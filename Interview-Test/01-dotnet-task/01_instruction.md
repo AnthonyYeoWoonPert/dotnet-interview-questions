@@ -1,6 +1,34 @@
-# Section 2 .NET Theoretical and Coding Exercise 
+# Section 1 .NET Theoretical and Coding Exercise 
 
-## Coding Exercise
+## Theoretical Exercises
+This section assesses your understanding of the challenges and best practices involived in migrating applications from the .NET framework to .NET. 
+
+1. What are the most significant challenges you would expect to face when migrating a large, m,monolithic ASP.NET MVC application from .NET Framework 4.8 to .NET 8? Please describe at least three challenges and explain how you would mitigate them?
+
+2. Explain the role of the .NET Upgrade Assistance. What are its limitations, and when would you choose to use it versus a manual migration approach?
+
+3. Describe the key difference between the project file format (.csproj) in .NET Framework and .NET. What are the advantages of the new SDK-style project format?
+
+4. Your team is migrating a .NET framework application that heavily relies on WCF for communication with other services. What are the recommended alternatives to WCF in the .NET ecosystem, and what factors would you consider when choosing a replacement?
+
+5. How would you handle third-party dependencies that are not compatible with .NET during a migration? Describe a step-by-step process for identifying and resolving such dependencies.
+
+---------------------------
+### .NET
+
+6. Explain the concept of async and await in C#. Provide a simple code
+example demonstrating their use and explain the benefits of asynchronous
+programming in a typical web application context.
+
+7. Describe the Dependency Injection (DI) pattern and its benefits. How is DI typically implemented in ASP.NET core application? Provide a conceptual code example demonstrating it.
+
+8. What is LINQ (Language Integrated Query)? Provide a C# code example that uses LINQ to perform a complex query on collection (e.g., filtering, sorting, and grouping)
+
+9. Discuss the differences between IEnumerable<T>, ICollection<T>, IList<T>, and List<T> in C#. When would you choose one over the others.
+
+
+
+## Coding Exercises
 
 1. You are tasked with building a simple RESTful API endpoint in ASP.NET Core that manages a collection of Product objects. Each Product has an Id (int), Name (string), Price (decimal) and Stock (int). Implement the following: 
     - A Product model class.  
