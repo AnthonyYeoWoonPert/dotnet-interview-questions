@@ -2,7 +2,7 @@
   "name": "Codespace with SQL Server",
   "dockerComposeFile": "docker-compose.yml",
   "service": "dev",
-  "workspaceFolder": "/workspace",
+  "workspaceFolder": "/workspaces",
   "forwardPorts": [1433],
   "shutdownAction": "stopCompose",
   //"postCreateCommand": "dotnet --info && sqlcmd -S localhost -U sa -P 'P@ssw0rdStrong!' -Q \"SELECT @@VERSION\" || true",

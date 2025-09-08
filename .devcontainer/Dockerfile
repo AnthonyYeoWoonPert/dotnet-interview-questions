@@ -6,7 +6,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     curl gnupg apt-transport-https ca-certificates unixodbc-dev \
     && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /workspace
+WORKDIR /workspaces
 COPY . .
 
 CMD ["bash"]
