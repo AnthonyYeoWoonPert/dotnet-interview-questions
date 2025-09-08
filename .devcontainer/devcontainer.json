@@ -4,7 +4,8 @@
   "service": "dev",
   "workspaceFolder": "/workspaces",
    "forwardPorts": [1433],
-  "postCreateCommand": "bash .devcontainer/setup-sqlcmd.sh",
+  //"postCreateCommand": "bash .devcontainer/setup-sqlcmd.sh || true",
+  "postCreateCommand": "dotnet --info && sqlcmd -? || true",
   "customizations": {
     "vscode": {
       "settings": {

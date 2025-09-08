@@ -1,24 +1,29 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
+# Use official .NET 8 SDK image as base
+FROM mcr.microsoft.com/devcontainers/dotnet:1-8.0-bookworm as dev
 
-# Install .NET Framework build tools (msbuild is part of mono-complete for Linux)
+# Install prerequisites
 RUN apt-get update && apt-get install -y \
-    mono-complete \
+    curl \
     gnupg \
-    && rm -rf /var/lib/apt/lists/*
-
-# Install SQL Server tools (sqlcmd, bcp) - these are client tools, not the server itself
-RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /etc/apt/trusted.gpg.d/microsoft.gpg
-RUN curl https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/prod.list | tee /etc/apt/sources.list.d/msprod.list
-
-RUN apt-get update && apt-get install -y \
-    mssql-tools \
+    apt-transport-https \
+    ca-certificates \
     unixodbc-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Set PATH for SQL Server tools
-ENV PATH="$PATH:/opt/mssql-tools/bin"
+# Add Microsoft repo for SQL tools
+RUN curl -sSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o /usr/share/keyrings/microsoft-prod.gpg && \
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft-prod.gpg] https://packages.microsoft.com/ubuntu/$(lsb_release -rs)/prod main" \
+    > /etc/apt/sources.list.d/microsoft-prod.list
 
-# Expose ports for web app (MSSQL will be exposed via docker-compose)
-EXPOSE 1433
+# Install SQL Server tools (sqlcmd, bcp)
+RUN apt-get update && ACCEPT_EULA=Y apt-get install -y \
+    mssql-tools18 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Add sqlcmd to PATH
+ENV PATH="${PATH}:/opt/mssql-tools18/bin"
+
+# Expose ports for your .NET app
+EXPOSE 5000 5001
 
 WORKDIR /workspace
