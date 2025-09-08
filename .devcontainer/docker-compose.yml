@@ -6,6 +6,7 @@ services:
     command: sleep infinity
     volumes:
       - ..:/workspaces:cached
+    working_dir: /workspaces
     environment:
       ConnectionStrings__DefaultConnection: "Server=mssql,1433;Database=master;User Id=SA;Password=P@ssw0rdStrong!;TrustServerCertificate=True;"
     ports:
