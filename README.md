@@ -58,6 +58,7 @@ The codespace environment is pre-configured with
 
 
 ## Test Structure 
+```
 ├─ .devcontainer/
 │ ├── devcontainer.json # Dev container configuration for consistent environment
 │ ├── docker-compose.yml # Docker Compose setup for services (e.g., SQL Server)
@@ -88,7 +89,7 @@ The codespace environment is pre-configured with
 ├─ .gitignore # Git ignore file
 ├─ LICENSE # License for repository
 └─ README.md # Project documentation
-
+```
 ## Submission
 
 Once you have completed both parts of the test, pleaase commit your changes to your forked repository and notify us.
