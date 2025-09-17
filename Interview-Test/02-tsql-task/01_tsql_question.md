@@ -5,23 +5,23 @@
 1. What is the purpose of SET NOCOUNT ON in a stored procedure? How does it affect performance and client-side applications.?
 
 ```
-answer here
+SET NOCOUNT ON is used in a stored procedure to stop SQL Server from sending back messages about the number of rows affected by each statement (like “3 rows affected”). Normally, after every INSERT, UPDATE, or DELETE, SQL Server sends this extra information to the client. These messages aren’t usually useful for the app, but they still get sent across the network, which can slow things down if it is running a lot of queries. By adding SET NOCOUNT ON, SQL Server skips sending those messages, which improves performance and reduces overhead. For client applications, it also avoids confusion because they don’t get extra messages they don’t actually need.
 ```
 
 2. How would you handle a performance bottleneck where a .NET application frequently calls a stored procedure that joins 8+ tables and shows inconsistent execution times?
 
 ```
-answer here
+When a stored procedure with many joins shows inconsistent performance, a few targeted techniques can make a big difference. One approach is to create covering indexes that align with the WHERE, JOIN, and ORDER BY clauses, and include the extra columns needed in the result. This allows SQL Server to satisfy queries directly from the index without extra lookups, and combined with matching .NET parameter types (e.g., sending SqlDbType.Int for an INT column instead of NVARCHAR) helps preserve index seeks instead of triggering slow scans. Another powerful method is the two-step temp table pattern: rather than throwing all 8+ tables into one massive join, you first filter down to the small, selective set of IDs you actually need, insert them into a temp table, add an index if useful, and then join the larger tables to this temp table. This stabilizes the query plan, gives the optimizer accurate row counts, and avoids parameter sniffing issues that cause big swings in performance. On top of that, reducing the payload by selecting only the necessary columns and rows keeps reads light, while avoiding non-SARGable conditions (like LIKE '%abc%' or functions on columns) ensures the optimizer can use indexes effectively. Together, these practices help turn a heavy, unpredictable stored procedure into one that runs consistently fast and efficiently.
 ```
 
 3. A .NET application is using connection pooling with SQL Server. Under heavy load, you observe connection timeouts and deadlocks. How do you diagnose and resolve this issue?
 
 ```
-answer here
+If I ran into connection timeouts and deadlocks under heavy load, the first thing I’d do is isolate the issue instead of guessing. I’d start by reproducing the problem on one specific endpoint and load-testing until I see the failure consistently. Then I’d check whether the problem comes from connection pooling by making sure every SqlConnection and SqlCommand is properly wrapped in using blocks, and that I’m not accidentally creating lots of different connection strings that split the pool. I’d log when connections are opened and closed to spot any leaks. At the same time, I’d watch both application and SQL Server metrics—things like pooled vs active connections on the app side, and blocking chains or locks on the SQL side using DMVs or Extended Events. If I capture a deadlock graph, I can see exactly which queries are conflicting and in what order. From there, I’d check for long transactions or business logic holding locks too long, and I’d move non-SQL work outside the transaction. I’d also review indexes and parameters to make sure queries are using seeks instead of scans, and I’d fix any implicit conversions. If reads and writes are blocking each other heavily, I’d enable Read Committed Snapshot Isolation (RCSI) to reduce contention. Finally, I’d add a retry policy for deadlocks in the application with a small backoff, and test again under load to confirm the pool is stable, blocking has dropped, and queries complete within the expected time.
 ```
 
 4. You observe that a .NET Core application sometimes gets “timeout expired” errors when calling a stored procedure, but running the same SP directly in SSMS completes in <2 seconds. How do you approach this issue?
 
 ```
-answer here
+If my .NET Core app times out but the same stored procedure runs fine in SSMS, I’d first assume the two environments aren’t running under the same conditions. I’d start by checking the parameters the app sends and replay them in SSMS using the same data types. Sometimes the app sends an NVARCHAR when SQL expects an INT, and that causes slow scans instead of fast index seeks. I’d also make sure the settings match—SSMS and .NET use different defaults (for example, ARITHABORT), which can make SQL pick a totally different plan. If the issue still happens, it may be parameter sniffing, where SQL caches a bad plan for certain values. In that case, I’d try fixes like adding OPTION (RECOMPILE), using OPTIMIZE FOR UNKNOWN, or breaking the query into steps with a temp table. I’d also double-check that the app’s CommandTimeout isn’t too short  and confirm it’s not being blocked by other queries. Finally, I’d look for connection leaks or long transactions in the app that hold resources too long. In most cases, the fix comes down to correcting parameter types, stabilizing the execution plan, or addressing blocking so the app behaves as fast as SSMS.
 ```
