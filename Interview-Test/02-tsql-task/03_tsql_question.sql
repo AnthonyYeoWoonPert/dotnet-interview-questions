@@ -21,3 +21,18 @@ SELECT * FROM Orders;
 
 
 -- place your script after this comment 
+
+
+select
+    CONVERT(char(7), o.OrderDate, 23) AS SalesMonth,   
+    sum(o.TotalAmount) AS TotalBeforeDiscount,
+    sum(
+        CASE WHEN c.isVIP = 1 AND o.TotalAmount >= 100 
+             THEN o.TotalAmount * 0.9
+             ELSE o.TotalAmount
+        END
+    ) AS TotalAfterDiscount
+from Orders o
+join Customers c ON c.CustomerId = o.CustomerId
+group by CONVERT(char(7), o.OrderDate, 23)
+order by SalesMonth;

@@ -2,17 +2,17 @@
 
 <h2>Add Product</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
-    <div>
-        @Html.LabelFor(m => m.Name)
-        @Html.TextBoxFor(m => m.Name)
-    </div>
+<div>
+    @Html.LabelFor(m => m.Name)
+    @Html.TextBoxFor(m => m.Name)
+</div>
 
-    <div>
-        @Html.LabelFor(m => m.Quantity)
-        @Html.TextBoxFor(m => m.Quantity)
-    </div>
+<div>
+    @Html.LabelFor(m => m.Quantity)
+    @Html.TextBoxFor(m => m.Quantity)
+</div>
 
-    <input type="submit" value="Save" />
+<input type="submit" value="Save" />
 }

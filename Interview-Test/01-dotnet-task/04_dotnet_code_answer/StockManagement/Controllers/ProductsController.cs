@@ -1,7 +1,8 @@
+using Microsoft.AspNetCore.Mvc;
 using StockManagement.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
+
 
 namespace StockManagement.Controllers
 {
@@ -20,6 +21,16 @@ namespace StockManagement.Controllers
             return View();
         }
 
+
+        //i add this
+        public ActionResult Edit(int id)
+        {
+            var product = _products.FirstOrDefault(p => p.Id == id);
+
+
+            return View(product);
+        }
+
         [HttpPost]
         public ActionResult Create(Product product)
         {
@@ -27,11 +38,16 @@ namespace StockManagement.Controllers
             {
                 product.Id = _products.Count + 1;
 
+                //i add this
+
+                _products.Add(product);
+
                 return RedirectToAction("Index");
             }
             return View(product);
         }
 
+        [HttpPost]
         public ActionResult UpdateStock(int id, int newQty)
         {
             var product = _products.FirstOrDefault(p => p.Id == id);

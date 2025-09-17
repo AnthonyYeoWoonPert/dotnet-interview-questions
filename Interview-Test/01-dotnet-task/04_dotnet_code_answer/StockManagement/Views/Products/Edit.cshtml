@@ -1,0 +1,22 @@
+﻿@model StockManagement.Models.Product
+
+<h2>Edit Product</h2>
+
+@using (Html.BeginForm("UpdateStock", "Products", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.Name)
+
+    <div>
+        @Html.LabelFor(m => m.Name)
+        <span>@Model.Name</span> 
+    </div>
+
+    <div>
+        @Html.Label("Quantity")
+        <input type="number" name="newQty" value="@Model.Quantity" min="0" />
+    </div>
+
+    <input type="submit" value="Save" />
+}

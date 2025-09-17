@@ -20,7 +20,30 @@ USE testDB;
 SELECT * FROM Employees; 
 SELECT * FROM Departments;
 
+
+select name from departments
+select avg(salary) from employees group by DepartmentId
+
 -- place your script after this comment here 
+
+
+select 
+    d.id as departmentId,
+    d.name as departmentName,
+    isnull(avg(e.salary), 0) as averageSalary
+from departments d
+left join employees e 
+    on d.Id = e.DepartmentId
+group by d.Id, d.Name
+order by d.Id;
+
+
+
+
+
+
+
+
 
 
 
