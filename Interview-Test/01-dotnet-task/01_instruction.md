@@ -5,14 +5,34 @@ This section assesses your understanding of the challenges and best practices in
 
 1. What are the most significant challenges you would expect to face when migrating a large, m,monolithic ASP.NET MVC application from .NET Framework 4.8 to .NET 8? Please describe at least three challenges and explain how you would mitigate them?
 
-2. Explain the role of the .NET Upgrade Assistance. What are its limitations, and when would you choose to use it versus a manual migration approach?
+'''
+Migrating a big, monolithic ASP.NET MVC app from .NET Framework 4.8 to .NET 8 brings a few predictable challenges. First, the old System.Web world (HttpModules/Handlers, Global.asax, web.config, Forms/OWIN auth) is replaced by ASP.NET Core’s middleware pipeline, endpoint routing, appsettings.json, the Options pattern, and a new cookie/data-protection model. I’d map modules/handlers to middleware, move configuration into strongly-typed options, switch auth to ASP.NET Core Identity or OpenID Connect, and use Data Protection to handle cookies during cutover. Second, some APIs and Windows-only pieces simply don’t exist in .NET 8 (e.g., WebForms, full WCF server, certain GDI+/COM or legacy third-party libs). I’d inventory everything with analyzers, prefer packages that target netstandard/net8.0, replace what I can, and isolate true blockers as a small .NET Framework “sidecar” process the new app calls over HTTP/gRPC until we can modernize. Third, the data layer behaves differently (EF6 vs EF Core); where defaults, LINQ translation, migrations, and lazy loading change. I’d migrate the data access in vertical slices with integration tests around complex queries, fix non-translatable LINQ, add or adjust covering indexes, and verify execution plans. There’s also a hosting/ops shift (Kestrel behind IIS/NGINX, built-in DI/logging/health checks), which I’d handle by adopting the Generic Host, adding health checks and structured logs/telemetry, and load-testing each migrated slice. Finally, because a big-bang rewrite is risky, I’d use a “strangler” approach where route one feature at a time to the new app behind a façade or reverse proxy, gate changes with feature flags, and compare before/after metrics.
+'''
 
-3. Describe the key difference between the project file format (.csproj) in .NET Framework and .NET. What are the advantages of the new SDK-style project format?
 
-4. Your team is migrating a .NET framework application that heavily relies on WCF for communication with other services. What are the recommended alternatives to WCF in the .NET ecosystem, and what factors would you consider when choosing a replacement?
+3. Explain the role of the .NET Upgrade Assistance. What are its limitations, and when would you choose to use it versus a manual migration approach?
 
-5. How would you handle third-party dependencies that are not compatible with .NET during a migration? Describe a step-by-step process for identifying and resolving such dependencies.
+'''
+The .NET Upgrade Assistant is a CLI that jump-starts the move. It converts projects to the SDK-style format, updates target frameworks, adds analyzers, and points out breaking areas. It’s great for quickly modernizing project files and surfacing the to-do list across a large solution. Its limits are important, though because it won’t rewrite your request pipeline or auth, it won’t port WebForms or a full WCF server for you, and it can’t fix unusual MSBuild setups. I will use it for the mechanical first pass and standardization; I switch to a manual, design-led approach when I’m re-architecting (modularizing, strangler pattern), replacing WCF with gRPC/REST, or making opinionated changes humans should decide.
+'''
 
+4. Describe the key difference between the project file format (.csproj) in .NET Framework and .NET. What are the advantages of the new SDK-style project format?
+
+'''
+Old (.NET Framework) were verbose where every source file needed listed, XML, explicit <Compile Include=…> items, packages.config, GUIDs, and lots of custom targets.
+Whilst New (SDK-style on .NET) are tiny and declarative [Project Sdk="Microsoft.NET.Sdk(.Web)"], implicit includes for *.cs/wwwroot, PackageReference with transitive deps, easy multi-targeting (<TargetFrameworks>), central package management (Directory.Packages.props), simpler MSBuild customization.
+The advantages are it is made into dramatically smaller files; faster restore/build; first-class multi-targeting; cleaner dependency management; easier CI and onboarding.
+'''
+
+5. Your team is migrating a .NET framework application that heavily relies on WCF for communication with other services. What are the recommended alternatives to WCF in the .NET ecosystem, and what factors would you consider when choosing a replacement?
+'''
+For WCF-heavy systems, the practical replacements are gRPC, ASP.NET Core Web API (REST/JSON), and CoreWCF. I favor gRPC for internal service-to-service scenarios that need high throughput, strong contracts, or streaming; I prefer REST for public or browser-facing APIs because tooling is ubiquitous and payloads are easy to work with; and I use CoreWCF only as a temporary bridge when existing WCF contracts must be preserved.
+'''
+
+6. How would you handle third-party dependencies that are not compatible with .NET during a migration? Describe a step-by-step process for identifying and resolving such dependencies.
+'''
+When third-party dependencies don’t support .NET 8, I follow a clear path. First I inventory and classify everything (compatible, upgradable, not available). If an upgradable or drop-in alternative exists, I switch to it. If not, I wrap the usage behind an interface so the rest of the code doesn’t depend on the library directly, then either replace it with another library or run the legacy piece out-of-process as a Windows sidecar the .NET 8 app calls over HTTP/gRPC. Before any swap, I create “characterization tests” using real sample inputs and expected outputs from the old library, so I can prove the new path behaves the same; I cut over behind a feature flag and watch errors/latency. If the library is just a thin managed wrapper over a native DLL that still works, I might write a P/Invoke or C++/CLI bridge (Windows-only) to stay in-process.
+'''
 ---
 
 ### .NET Exercises
