@@ -255,3 +255,7 @@ However, the code has errors (compile-time + runtime). Find out and fix them.
 
 You may create one directory for each coding question you complete and commit.
 Please define which .NET version you are using
+
+'''
+for Q1, Q2 & Q3 the project uses **.NET 8.0** as specified in the `.csproj` file:
+'''
